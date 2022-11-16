@@ -62,6 +62,8 @@ https://en.wikipedia.org/wiki/Testing_effect
 
 ### 4. Minimizing distractions
 
-Fishcards design is simple and very intuitive. We don't want you
-spend time on figuring out how to properly use our app or get
-distracted by it's flashy animations and cool graphics.
+Fishcards design is simple and very intuitive. You will not
+waste time on figuring out how to use our app nor get
+distracted by it's flashy animations. Design is supposed to
+be pleasant and evoke positive emotions. We want to 
+encourage you to come back often - which is our priority.
