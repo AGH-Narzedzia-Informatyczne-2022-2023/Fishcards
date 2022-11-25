@@ -37,9 +37,7 @@ def supermemo(q: int, n: int, EF: float, I: int) -> (int, float, int):
 
     return (n, EF, I)
 
-
-""" 
-EXAMPLE USAGE:
+""" EXAMPLE USAGE:
 supermemo(4, 0, 2.5, 0)
 (1, 2.5, 1)
 """
