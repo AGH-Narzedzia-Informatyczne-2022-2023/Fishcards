@@ -9,6 +9,7 @@ const StyledNavbar = styled.nav`
   background-color: #0f0f0f90;
   color: #f0f8ff;
   position: sticky;
+  margin-bottom: 1.25%;
   #logo-text {
     color: ${(props) => props.theme.palette.primary.main};
     font-size: 1.75rem;
