@@ -1,4 +1,6 @@
-# Our gitignore
+# Our .gitignore
+tmp/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
