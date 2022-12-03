@@ -3,6 +3,12 @@ import styled from "styled-components";
 const StyledSwitchButton = styled.div`
   --height: 2.25rem;
   --width: calc(2 * var(--height));
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: ${(props) => props.theme.typography.fontFamily};
+
   input[type="checkbox"] {
     height: 0;
     width: 0;
@@ -19,7 +25,7 @@ const StyledSwitchButton = styled.div`
     cursor: pointer;
     width: var(--width);
     height: var(--height);
-    background: grey;
+    background: ${(props) => props.theme.palette.common.gray};
     display: block;
     border-radius: 100vmax;
     position: relative;
@@ -45,6 +51,16 @@ const StyledSwitchButton = styled.div`
     &::after {
       left: calc(100% - var(--width) / 100);
       transform: translateX(-100%);
+    }
+  }
+
+  .option-display {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme.palette.common.gray};
+    transition: color 400ms ease-in-out;
+
+    &.colored-true {
+      color: ${(props) => props.theme.palette.primary.main};
     }
   }
 `;
