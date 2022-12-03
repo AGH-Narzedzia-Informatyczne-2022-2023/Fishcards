@@ -11,7 +11,12 @@ const Modal = ({ textContent, children }: Props) => {
   return (
     <StyledModal>
       {children}
-      <SwitchButton defaultChecked={true} inputId="input-dupa  " />
+      <SwitchButton
+        defaultChecked={true}
+        inputId="input-dupa "
+        firstOption="111"
+        secondOption="222"
+      />
     </StyledModal>
   );
 };
