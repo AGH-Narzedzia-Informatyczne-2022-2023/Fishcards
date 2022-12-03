@@ -1,7 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import StyledNavbar from "./Styles/StyledNavbar";
-import { useTheme } from "styled-components";
 
 const Navbar = () => {
   return (
