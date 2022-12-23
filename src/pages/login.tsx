@@ -1,8 +1,16 @@
 import Head from 'next/head'
-import { NextPage } from 'next';
+import { type NextPage } from 'next';
 import Link from 'next/link';
+import { signIn, useSession } from "next-auth/react"
 
 const Login: NextPage = () => {
+
+    const { data: session } = useSession();
+
+    async function handleGoogleSignin() {
+        signIn('google', { callbackUrl: `${window.location.origin}`});
+    }
+
     return (
         <>
             <Head>
@@ -16,7 +24,7 @@ const Login: NextPage = () => {
                     <h1>Login page</h1>
                 </div>
 
-                <form action="">
+                <form>
                     <div>
                         <input type="email" name="email" placeholder="Email" />
                     </div>
@@ -26,16 +34,18 @@ const Login: NextPage = () => {
                     <div>
                         <button> Submit </button>
                     </div>
-                    <div>
-                        <button> Signin with Google </button>
-                    </div>
-                    <div>
-                        <button> Signin with Github </button>
-                    </div>
-                    <div>
-                        <p> You don't have an account? <Link href={'/signup'}> Signup </Link></p>
-                    </div>
                 </form>
+
+                <div>
+                    <button onClick={ handleGoogleSignin }> Signin with Google </button>
+                </div>
+                <div>
+                    <button> Signin with Github </button>
+                </div>
+                <div>
+                    <p> You don't have an account? <Link href={'/signup'}> Signup </Link></p>
+                </div>
+
             </main>
         </>
     );
