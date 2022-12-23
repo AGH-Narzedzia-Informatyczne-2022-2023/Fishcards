@@ -37,7 +37,7 @@ const Signup: NextPage = () => {
                 </form>
 
                 <div>
-                    <p> You already have an account? <Link href={'/login'}> Login </Link></p>
+                    <p> You already have an account? <Link href={'/signin'}> Sign in </Link></p>
                 </div>
 
             </main>

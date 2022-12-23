@@ -3,7 +3,7 @@ import { type NextPage } from 'next';
 import Link from 'next/link';
 import { signIn, useSession } from "next-auth/react"
 
-const Login: NextPage = () => {
+const Signin: NextPage = () => {
 
     const { data: session } = useSession();
 
@@ -55,4 +55,4 @@ const Login: NextPage = () => {
     );
 }
 
-export default Login;
+export default Signin;
