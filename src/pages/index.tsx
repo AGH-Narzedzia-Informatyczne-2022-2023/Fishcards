@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create T3 App</title>
+        <title>Fishcards</title>
         <meta name="description" content="Webapp for smart learning" />
         <link rel="icon" href="/logo.svg" />
       </Head>
