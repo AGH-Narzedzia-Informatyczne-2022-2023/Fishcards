@@ -1,10 +1,9 @@
-import { type NextPage } from "next";
-import { signIn, useSession } from "next-auth/react";
+import { GetServerSideProps } from "next";
+import {type NextPage } from "next";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 
 const Home: NextPage = () => {
-
-  const { data: session } = useSession();
 
   return (
     <>
@@ -15,11 +14,30 @@ const Home: NextPage = () => {
       </Head>
       
       <main>
-        { session ? <h1> Hello {session.user?.name} </h1> : <h1> Hello guest </h1> }
+        You should be logged in to see this.
+        <div>
+          <button onClick={ () => signOut() }> Logout </button>
+        </div>
       </main>
-
     </>
   );
 };
 
 export default Home;
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: { session }
+  }
+}
