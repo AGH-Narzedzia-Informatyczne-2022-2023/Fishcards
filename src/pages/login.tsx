@@ -11,6 +11,10 @@ const Login: NextPage = () => {
         signIn('google', { callbackUrl: `${window.location.origin}`});
     }
 
+    async function handleGithubSignin() {
+        signIn('github', { callbackUrl: `${window.location.origin}`});
+    }
+
     return (
         <>
             <Head>
@@ -40,7 +44,7 @@ const Login: NextPage = () => {
                     <button onClick={ handleGoogleSignin }> Signin with Google </button>
                 </div>
                 <div>
-                    <button> Signin with Github </button>
+                    <button onClick={ handleGithubSignin }> Signin with Github </button>
                 </div>
                 <div>
                     <p> You don't have an account? <Link href={'/signup'}> Signup </Link></p>
