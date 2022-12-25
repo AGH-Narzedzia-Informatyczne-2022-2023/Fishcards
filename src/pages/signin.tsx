@@ -6,7 +6,17 @@ import { useFormik } from "formik"
 
 const Signin: NextPage = () => {
 
-    const { data: session } = useSession();
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit
+    })
+
+    async function onSubmit(values : any) {
+        console.log(values)
+    }
 
     async function handleGoogleSignin() {
         signIn('google', { callbackUrl: `${window.location.origin}`});
@@ -29,15 +39,15 @@ const Signin: NextPage = () => {
                     <h1>Login page</h1>
                 </div>
 
-                <form>
+                <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <input type="email" name="email" placeholder="Email" />
+                    <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Password" />
+                        <input type="password" placeholder="Password" {...formik.getFieldProps("password")} />
                     </div>
                     <div>
-                        <button> Submit </button>
+                        <button type="submit"> Submit </button>
                     </div>
                 </form>
 

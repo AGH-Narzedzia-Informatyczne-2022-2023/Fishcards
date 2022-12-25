@@ -1,9 +1,24 @@
 import Head from 'next/head'
 import { type NextPage } from 'next';
 import Link from 'next/link';
-import { signIn, useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react";
+import { useFormik } from "formik";
 
 const Signup: NextPage = () => {
+
+    const formik = useFormik({
+        initialValues: {
+            username: '',
+            email: '',
+            password: '',
+            cpassword: ''
+        },
+        onSubmit
+    })
+
+    async function onSubmit(values : any) {
+        console.log(values)
+    }
 
     return (
         <>
@@ -18,21 +33,21 @@ const Signup: NextPage = () => {
                     <h1>Register page</h1>
                 </div>
 
-                <form>
+                <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <input type="text" name="username" placeholder="Username" />
+                        <input type="text" placeholder="Username" {...formik.getFieldProps("username")} />
                     </div>
                     <div>
-                        <input type="email" name="email" placeholder="Email" />
+                        <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Password" />
+                        <input type="password" placeholder="Password" {...formik.getFieldProps("password")} />
                     </div>
                     <div>
-                        <input type="password" name="cpassword" placeholder="Confirm Password" />
+                        <input type="password" placeholder="Confirm Password" {...formik.getFieldProps("cpassword")} />
                     </div>
                     <div>
-                        <button> Signup </button>
+                        <button type='submit'> Signup </button>
                     </div>
                 </form>
 
