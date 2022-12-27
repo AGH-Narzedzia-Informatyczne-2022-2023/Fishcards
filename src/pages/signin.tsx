@@ -6,11 +6,39 @@ import { useFormik } from "formik"
 
 const Signin: NextPage = () => {
 
+    interface Values {
+        email: string;
+        password: string;
+    }
+
+    interface Errors {
+        email?: string;
+        password?: string;
+    }
+
+    const validateSignin = (values : Values) => {
+        let errors: Errors = {};
+
+        if (!values.email) {
+            errors.email = 'Required';
+        }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            errors.email = 'Invalid email address';
+        }
+
+        if (!values.password) {
+            errors.password = 'Required';
+        }
+
+        return errors;
+    }
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
+        validate : validateSignin,
         onSubmit
     })
 
@@ -41,10 +69,12 @@ const Signin: NextPage = () => {
 
                 <form onSubmit={formik.handleSubmit}>
                     <div>
-                    <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
+                        <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
+                        { formik.errors.email && formik.touched.email ? <span>{formik.errors.email}</span> : <></> }
                     </div>
                     <div>
                         <input type="password" placeholder="Password" {...formik.getFieldProps("password")} />
+                        { formik.errors.password && formik.touched.password ? <span>{formik.errors.password}</span> : <></> }
                     </div>
                     <div>
                         <button type="submit"> Submit </button>

@@ -6,6 +6,57 @@ import { useFormik } from "formik";
 
 const Signup: NextPage = () => {
 
+    interface Values {
+        username: string;
+        email: string;
+        password: string;
+        cpassword: string;
+    }
+
+    interface Errors {
+        username?: string;
+        email?: string;
+        password?: string;
+        cpassword?: string;
+    }
+
+    const validateSignup = (values : Values) => {
+        let errors: Errors = {};
+
+        if (!values.username) {
+            errors.username = 'Required';
+        }
+        else if (values.username.includes(" /?<>")) {
+            errors.username = 'Invalid username';
+        }
+
+        if (!values.email) {
+            errors.email = 'Required';
+        }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            errors.email = 'Invalid email address';
+        }
+
+        if (!values.password) {
+            errors.password = 'Required';
+        }
+        else if (values.password.length < 8) {
+            errors.password = 'Minimum password lenght is 8';
+        }
+        else if (20 < values.password.length) {
+            errors.password = 'Maximum password lenght is 20';
+        }
+        else if (values.password.includes(" ")) {
+            errors.password = 'Invalid password';
+        }
+
+        if (values.password != values.cpassword) {
+            errors.cpassword = 'Passwords do not match';
+        }
+
+        return errors;
+    }
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -13,6 +64,7 @@ const Signup: NextPage = () => {
             password: '',
             cpassword: ''
         },
+        validate: validateSignup,
         onSubmit
     })
 
@@ -36,15 +88,19 @@ const Signup: NextPage = () => {
                 <form onSubmit={formik.handleSubmit}>
                     <div>
                         <input type="text" placeholder="Username" {...formik.getFieldProps("username")} />
+                        { formik.errors.username && formik.touched.username ? <span>{formik.errors.username}</span> : <></> }
                     </div>
                     <div>
                         <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
+                        { formik.errors.email && formik.touched.email ? <span>{formik.errors.email}</span> : <></> }
                     </div>
                     <div>
                         <input type="password" placeholder="Password" {...formik.getFieldProps("password")} />
+                        { formik.errors.password && formik.touched.password ? <span>{formik.errors.password}</span> : <></> }
                     </div>
                     <div>
                         <input type="password" placeholder="Confirm Password" {...formik.getFieldProps("cpassword")} />
+                        { formik.errors.cpassword && formik.touched.cpassword ? <span>{formik.errors.cpassword}</span> : <></> }
                     </div>
                     <div>
                         <button type='submit'> Signup </button>
