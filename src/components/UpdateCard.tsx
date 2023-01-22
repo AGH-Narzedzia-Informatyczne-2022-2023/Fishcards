@@ -3,6 +3,7 @@ import { object, setErrorMap, string } from "zod";
 import { trpc } from "../utils/trpc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 export function UpdateCard({id} : any) {
 
@@ -27,6 +28,11 @@ export function UpdateCard({id} : any) {
         }
     });
 
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
     return (
         <>
             <label htmlFor="my-modal-15" className="btn btn-warning mr-4"> Update </label>
@@ -43,7 +49,7 @@ export function UpdateCard({id} : any) {
                         <textarea className="textarea textarea-bordered w-full max-w-xs mb-4 inline-block align-middle" placeholder="Answer" {...formik.getFieldProps("answer")}></textarea>
                     </div>
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-15" className="btn btn-warning"> 
                                     Update card
                                 </label>

@@ -60,10 +60,10 @@ function Decks() {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th className="bg-gray-700">Index</th>
-                  <th className="bg-gray-700">Question</th>
-                  <th className="bg-gray-700">Answer</th>
-                  <th className="bg-gray-700"></th>
+                  <th>Index</th>
+                  <th>Question</th>
+                  <th>Answer</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>

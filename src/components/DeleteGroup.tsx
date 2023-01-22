@@ -3,6 +3,7 @@ import { object, setErrorMap, string } from "zod";
 import { trpc } from "../utils/trpc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 export const groupSchema = object({
     name: string({
@@ -29,6 +30,11 @@ export function DeleteGroup({id} : any) {
         }
     });
 
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
     return (
         <>
             <label htmlFor="my-modal-6" className="btn btn-error mr-4"> Delete </label>
@@ -43,7 +49,7 @@ export function DeleteGroup({id} : any) {
                         </div>
                         <input className="inline-block align-middle input input-bordered w-full max-w-xs mb-4" type="number" {...formik.getFieldProps("groupId")}></input>
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-6" className="btn btn-error"> 
                                     Delete group
                                 </label>

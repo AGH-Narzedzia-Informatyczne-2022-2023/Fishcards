@@ -47,9 +47,9 @@ const Groups: NextPage = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th className="bg-gray-700">Index</th>
-                  <th className="bg-gray-700">Group name</th>
-                  <th className="bg-gray-700"></th>
+                  <th>Index</th>
+                  <th>Group name</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>

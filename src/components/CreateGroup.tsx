@@ -3,6 +3,7 @@ import { object, setErrorMap, string } from "zod";
 import { trpc } from "../utils/trpc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 export const groupSchema = object({
     name: string({
@@ -28,6 +29,11 @@ export function CreateGroup() {
         }
     });
 
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
     return (
         <>
             <label htmlFor="my-modal-5" className="btn btn-primary"> Create group </label>
@@ -39,7 +45,7 @@ export function CreateGroup() {
                 <form onSubmit={formik.handleSubmit}>
                         <input className="inline-block align-middle input input-bordered w-full max-w-xs mb-4" placeholder="Name" type="text" {...formik.getFieldProps("groupName")}></input>
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-5" className="btn btn-primary"> 
                                     Create group
                                 </label>

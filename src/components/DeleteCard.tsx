@@ -3,6 +3,7 @@ import { object, setErrorMap, string } from "zod";
 import { trpc } from "../utils/trpc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 export function DeleteCard({id} : any) {
 
@@ -26,6 +27,11 @@ export function DeleteCard({id} : any) {
         }
     });
 
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
     return (
         <>
             <label htmlFor="my-modal-20" className="btn btn-error"> Delete </label>
@@ -40,7 +46,7 @@ export function DeleteCard({id} : any) {
                         </div>
                         <input className="inline-block align-middle input input-bordered w-full max-w-xs mb-4" type="number" {...formik.getFieldProps("cardId")}></input>
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-20" className="btn btn-error"> 
                                     Delete card
                                 </label>

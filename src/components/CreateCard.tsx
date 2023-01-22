@@ -3,11 +3,17 @@ import { object, setErrorMap, string } from "zod";
 import { trpc } from "../utils/trpc";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 export function CreateCard({id} : any) {
 
     const createCard = trpc.card.create.useMutation();
     const createProcessedCard = trpc.card.createProcessed.useMutation();
+
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -44,7 +50,7 @@ export function CreateCard({id} : any) {
                         <textarea className="textarea textarea-bordered w-full max-w-xs mb-4 inline-block align-middle" placeholder="Answer" {...formik.getFieldProps("answer")}></textarea>
                     </div>
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-14" className="btn btn-primary"> 
                                     Create card
                                 </label>
