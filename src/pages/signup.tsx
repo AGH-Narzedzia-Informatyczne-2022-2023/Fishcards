@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { type NextPage } from 'next';
 import Link from 'next/link';
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { useFormik } from "formik";
+import Navbar from '../components/Navbar';
 
 const Signup: NextPage = () => {
 
@@ -28,6 +29,12 @@ const Signup: NextPage = () => {
         }
         else if (values.username.includes(" /?<>")) {
             errors.username = 'Invalid username';
+        }
+        else if (values.username.length < 4) {
+            errors.username = 'Minimum username lenght is 4';
+        }
+        else if (20 < values.username.length) {
+            errors.username = 'Maximum username lenght is 20';
         }
 
         if (!values.email) {
@@ -74,46 +81,58 @@ const Signup: NextPage = () => {
 
     return (
         <>
+            
             <Head>
                 <title>Fishcards</title>
                 <meta name="description" content="Webapp for smart learning" />
                 <link rel="icon" href="/logo.svg" />
             </Head>
 
-            <main>
-                <div>
-                    <h1>Register page</h1>
-                </div>
+        
+            <div className="max-w-5xl m-auto">
+                <main className="flex min-h-screen flex-col items-center justify-center">
+                    <form onSubmit={formik.handleSubmit} className="flex flex-col items-center">
+                        <div className="rounded-xl">
+                            <input className={"input input-bordered w-full max-w-xs mb-2 " + ((formik.errors.username && formik.touched.username) ? "input-error" : "input-accent")} type="text" placeholder="Username" {...formik.getFieldProps("username")} />
+                        </div>
+                        <div>
+                            <input className={"input input-bordered w-full max-w-xs mb-2 " + ((formik.errors.email && formik.touched.email) ? "input-error" : "input-accent")} type="email" placeholder="Email" {...formik.getFieldProps("email")} />
+                        </div>
+                        <div>
+                            <input className={"input input-bordered w-full max-w-xs mb-2 " + ((formik.errors.password && formik.touched.password) ? "input-error" : "input-accent")} type="password" placeholder="Password" {...formik.getFieldProps("password")} />
+                        </div>
+                        <div>
+                            <input className={"input input-bordered w-full max-w-xs mb-4 " + ((formik.errors.cpassword && formik.touched.cpassword) ? "input-error" : "input-accent")} type="password" placeholder="Confirm Password" {...formik.getFieldProps("cpassword")} />
+                        </div>
+                        <div>
+                            <button type='submit' className="btn btn-primary gap-2 mb-2 w-64"> Signup </button>
+                        </div>
+                    </form>
 
-                <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <input type="text" placeholder="Username" {...formik.getFieldProps("username")} />
-                        { formik.errors.username && formik.touched.username ? <span>{formik.errors.username}</span> : <></> }
+                        <p> You already have an account? <Link className='hover:text-emerald-500' href={'/signin'}> Sign in </Link></p>
                     </div>
-                    <div>
-                        <input type="email" placeholder="Email" {...formik.getFieldProps("email")} />
-                        { formik.errors.email && formik.touched.email ? <span>{formik.errors.email}</span> : <></> }
-                    </div>
-                    <div>
-                        <input type="password" placeholder="Password" {...formik.getFieldProps("password")} />
-                        { formik.errors.password && formik.touched.password ? <span>{formik.errors.password}</span> : <></> }
-                    </div>
-                    <div>
-                        <input type="password" placeholder="Confirm Password" {...formik.getFieldProps("cpassword")} />
-                        { formik.errors.cpassword && formik.touched.cpassword ? <span>{formik.errors.cpassword}</span> : <></> }
-                    </div>
-                    <div>
-                        <button type='submit'> Signup </button>
-                    </div>
-                </form>
 
-                <div>
-                    <p> You already have an account? <Link href={'/signin'}> Sign in </Link></p>
-                </div>
-
-            </main>
+                </main>
+            </div>
         </>
     );
 }
 
 export default Signup;
+
+export async function getServerSideProps(context: any) {
+    const session = await getSession(context);
+
+    if (session) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        }
+    }
+    return {
+        props: {}
+    };
+}
