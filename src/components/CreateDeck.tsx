@@ -65,9 +65,10 @@ export function CreateDeck() {
                         </div>
                         
                         <Field as="select" name="group" className="select select-bordered w-full max-w-xs">
-                        {allGroups.data?.map(group => (
-                            <option key={group.id} value={group.id}> {group.name} </option>
-                        ))}
+                            <option value="" selected disabled hidden>Choose group here</option>
+                            {allGroups.data?.map(group => (
+                                <option key={group.id} value={group.id}> {group.name} </option>
+                            ))}
                         </Field>
 
                         <div>
