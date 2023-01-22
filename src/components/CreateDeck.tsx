@@ -4,6 +4,7 @@ import { trpc } from "../utils/trpc";
 import { useFormik, Field, Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikCreateDeck from "./FormikCreateDeck";
+import { useRouter } from "next/router";
 
 export function CreateDeck() {
 
@@ -12,6 +13,11 @@ export function CreateDeck() {
 
     const allGroups = trpc.group.getAll.useQuery();
     const createDeck = trpc.deck.create.useMutation();
+
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
 
     return (
         <>
@@ -66,7 +72,7 @@ export function CreateDeck() {
                         </Field>
 
                         <div>
-                            <button type="submit">
+                            <button type="submit" onClick={forceReload}>
                                 <label htmlFor="my-modal-11" className="btn btn-primary mt-4"> 
                                     Create deck
                                 </label>
