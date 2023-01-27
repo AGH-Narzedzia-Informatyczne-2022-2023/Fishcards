@@ -1,28 +1,50 @@
-# Create T3 App
+Web application for smart learning.
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Fishcards uses flashcards as its main form of
+learning. Our intelligent system tracks what you've already
+learned and quickly adapts to the current state of your
+knowledge.
 
-## What's next? How do I make an app with this?
+## Why use Fishcards?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Learning often takes much more time than it could.
+It's not surprising - there is **loads** of information 
+about various studying techniques. Some people make a living
+by teaching others how to learn effectively. Flashcards makes
+you use the most efficient, evidence-based studying techniques
+without you noticing. And that's powerful!
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+### 1. Flashcards
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+They are the basic building blocks of our app. We use them to remember 
+and understand a concept. Flashcards make you use the studying techniques
+listed below naturally.
 
-## Learn More
+### 2. Spaced repetition
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Spaced repetition is an evidence-based learning technique. 
+When we spread reviews out over time, we tend to forget 
+the information much slower. In Fiashcards, we implemented 
+an intelligent system that calculates the probability of you 
+forgetting information, and then using spaced repetition accordingly.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+https://en.wikipedia.org/wiki/Spaced_repetition
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+https://en.wikipedia.org/wiki/Forgetting_curve
 
-## How do I deploy this?
+### 3. Active recall
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+It's often called the most effective study technique. It
+shows that long-term memory is increased when some of the
+learning period is devoted to retrieving information from
+memory, rather than just remembering. By using Fishcards
+you will use active recall in a significant proportion,
+especially when using tests.
+
+https://en.wikipedia.org/wiki/Testing_effect
+
+### 4. Minimizing distractions
+
+Fishcards design is simple and very intuitive. We don't want you
+spend time on figuring out how to properly use our app or get
+distracted by it's flashy animations and cool graphics.
